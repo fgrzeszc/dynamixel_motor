@@ -9,6 +9,7 @@ add_message_files(
   JointState.msg
   MotorState.msg
   MotorStateList.msg
+  MotorCommand.msg
 )
 
 generate_messages(

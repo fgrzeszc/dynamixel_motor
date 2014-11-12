@@ -181,7 +181,7 @@ class JointPositionController(JointController):
                 self.joint_state_pub.publish(self.joint_state)
 
     def process_command(self, msg):
-        angle = msg.data
-        mcv = (self.motor_id, self.pos_rad_to_raw(angle))
-        self.dxl_io.set_multi_position([mcv])
+        angle = msg.goal_pos
+        mcv = (self.motor_id, self.pos_rad_to_raw(angle), self.spd_rad_to_raw(msg.velocity))
+        self.dxl_io.set_multi_position_and_speed([mcv])
 

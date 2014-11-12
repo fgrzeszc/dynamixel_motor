@@ -57,6 +57,7 @@ from dynamixel_controllers.srv import SetTorqueLimit
 from std_msgs.msg import Float64
 from dynamixel_msgs.msg import MotorStateList
 from dynamixel_msgs.msg import JointState
+from dynamixel_msgs.msg import MotorCommand
 
 class JointController:
     def __init__(self, dxl_io, controller_namespace, port_namespace):
@@ -106,7 +107,7 @@ class JointController:
     def start(self):
         self.running = True
         self.joint_state_pub = rospy.Publisher(self.controller_namespace + '/state', JointState, queue_size=None)
-        self.command_sub = rospy.Subscriber(self.controller_namespace + '/command', Float64, self.process_command)
+        self.command_sub = rospy.Subscriber(self.controller_namespace + '/command', MotorCommand, self.process_command)
         self.motor_states_sub = rospy.Subscriber('motor_states/%s' % self.port_namespace, MotorStateList, self.process_motor_states)
 
     def stop(self):

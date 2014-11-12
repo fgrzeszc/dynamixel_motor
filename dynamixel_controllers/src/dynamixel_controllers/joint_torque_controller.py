@@ -166,5 +166,5 @@ class JointTorqueController(JointController):
                 self.joint_state_pub.publish(self.joint_state)
 
     def process_command(self, msg):
-        self.set_speed(msg.data)
+        self.set_speed(msg.velocity)
 
